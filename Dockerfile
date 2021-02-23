@@ -28,11 +28,12 @@ RUN mkdir /tmp/mc-paper/world && mkdir /tmp/mc-paper/world/datapacks
 
 # Download zip server file from https://www.curseforge.com/minecraft/modpacks/ftb-presents-skyfactory-3/files
 #COPY FTB_Presents_SkyFactory_3_Server_${VERSION}.zip /tmp/mc-paper/FTBServer.zip
+COPY BlazeandCaves_Advancements_Pack_1.11.5.zip /tmp/mc-paper/world/datapacks/dp_advance.zip
+
 
 RUN cd /tmp/mc-paper &&\
   wget -c ${MC_SERVER_URL} -O ServerInstall-paper.jar &&\
   #wget -c ${DATAPACK_ADVANCE} -O world/datapacks/dp_advance.zip &&\
-  curl ${DATAPACK_ADVANCE} -o world/datapacks/dp_advance.zip &&\
   unzip world/datapacks/dp_advance.zip -d world/datapacks && rm world/datapacks/dp_advance.zip 
   #&& \
 
