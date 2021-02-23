@@ -6,7 +6,7 @@ FROM openjdk:11 AS build
 #-------------------------------------
 ENV SERVER_MESSAGE="Minecraft Paper"
 ENV VERSION_ID=485
-ENV VERSION_NAME=1.15.5
+ENV VERSION_NAME=1.16.5
 ENV MC_SERVER_URL=https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/485/downloads/paper-1.16.5-485.jar
 ENV DATAPACK_ADVANCE=https://download851.mediafire.com/bcvtfcarjo8g/t4ayv8ku84mhbph/BlazeandCave%5C%27s+Advancements+Pack+1.11.5.zip
 #-------------------------------------
@@ -31,7 +31,8 @@ RUN mkdir /tmp/mc-paper/world && mkdir /tmp/mc-paper/world/datapacks
 
 RUN cd /tmp/mc-paper &&\
   wget -c ${MC_SERVER_URL} -O ServerInstall-paper.jar &&\
-  wget -c ${DATAPACK_ADVANCE} -O world/datapacks/dp_advance.zip &&\
+  #wget -c ${DATAPACK_ADVANCE} -O world/datapacks/dp_advance.zip &&\
+  curl ${DATAPACK_ADVANCE} -o world/datapacks/dp_advance.zip &&\
   unzip world/datapacks/dp_advance.zip -d world/datapacks && rm world/datapacks/dp_advance.zip 
   #&& \
 
