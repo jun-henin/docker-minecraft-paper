@@ -8,7 +8,9 @@ ENV SERVER_MESSAGE="Minecraft Paper"
 ENV VERSION_ID=485
 ENV VERSION_NAME=1.16.5
 ENV MC_SERVER_URL=https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/485/downloads/paper-1.16.5-485.jar
-ENV DATAPACK_ADVANCE=https://download851.mediafire.com/bcvtfcarjo8g/t4ayv8ku84mhbph/BlazeandCave%5C%27s+Advancements+Pack+1.11.5.zip
+ENV DATAPACK_ADVANCE_FILE=BlazeandCaves_Advancements_Pack_1.11.5.zip
+#ENV DATAPACK_ADVANCE=https://download851.mediafire.com/bcvtfcarjo8g/t4ayv8ku84mhbph/BlazeandCave%5C%27s+Advancements+Pack+1.11.5.zip
+ENV DYNMAP_FILE=Dynmap-3.1-beta7-spigot.jar
 #-------------------------------------
 
 
@@ -28,7 +30,7 @@ RUN mkdir /tmp/mc-paper/world && mkdir /tmp/mc-paper/world/datapacks
 
 # Download zip server file from https://www.curseforge.com/minecraft/modpacks/ftb-presents-skyfactory-3/files
 #COPY FTB_Presents_SkyFactory_3_Server_${VERSION}.zip /tmp/mc-paper/FTBServer.zip
-COPY BlazeandCaves_Advancements_Pack_1.11.5.zip /tmp/mc-paper/world/datapacks/dp_advance.zip
+COPY ${DATAPACK_ADVANCE_FILE} /tmp/mc-paper/world/datapacks/dp_advance.zip
 
 
 RUN cd /tmp/mc-paper &&\
@@ -47,12 +49,12 @@ RUN cd /tmp/mc-paper &&\
 
 #USER minecraft
 
-COPY Dynmap-3.1-beta7-spigot.jar /tmp/mc-paper/plugins/Dynmap-3.1-beta7-spigot.jar
+COPY ${DYNMAP_FILE} /tmp/mc-paper/plugins/${DYNMAP_FILE}
 
 
 EXPOSE 25565
 EXPOSE 8123
-EXPOSE 25577
+EXPOSE 25576
 
 ADD start.sh /start
 
@@ -66,7 +68,7 @@ ENV MOTD ${SERVER_MESSAGE} ${VERSION} Server Powered by (jhe) Docker
 ENV LEVEL world
 ENV JVM_OPTS -Xms2G -Xmx2G
 
-ENV ENABLE_RCON=true RCON_PORT=25577 RCON_PASSWORD=jheminecraft
+ENV ENABLE_RCON=true RCON_PORT=25576
 ENV SEED=572779209
 
 RUN echo "eula=true" > eula.txt
