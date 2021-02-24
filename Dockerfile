@@ -20,9 +20,9 @@ RUN apt-get update
 RUN apt-get install -y default-jdk
 RUN apt-get install -y wget unzip
 
-#RUN addgroup --gid 1234 minecraft
-#RUN adduser --disabled-password --home=/data --uid 1234 --gid 1234 --gecos "minecraft user" minecraft
-#USER minecraft
+RUN addgroup --gid 1234 minecraft
+RUN adduser --disabled-password --home=/data --uid 1234 --gid 1234 --gecos "minecraft user" minecraft
+USER minecraft
 
 #RUN mkdir minecraft
 RUN mkdir /tmp/mc-paper 
@@ -36,18 +36,16 @@ COPY ${DATAPACK_ADVANCE_FILE} /tmp/mc-paper/world/datapacks/dp_advance.zip
 RUN cd /tmp/mc-paper &&\
   wget -c ${MC_SERVER_URL} -O ServerInstall-paper.jar &&\
   #wget -c ${DATAPACK_ADVANCE} -O world/datapacks/dp_advance.zip &&\
-  unzip world/datapacks/dp_advance.zip -d world/datapacks && rm world/datapacks/dp_advance.zip 
-  #&& \
-
+  unzip world/datapacks/dp_advance.zip -d world/datapacks && rm world/datapacks/dp_advance.zip && \
   #cp /FTB_Presents_SkyFactory_3_Server_3_0_21.zip FTBSkyfactoryServer.zip &&\
   #chmod +x ./ServerInstall-paper.jar && \
   #./ServerInstall-paper.jar --auto && \
   #rm ServerInstall-paper.jar  
   #bash -x Install.sh
 # && \
-#  chown -R minecraft /tmp/mc-paper
+  chown -R minecraft /tmp/mc-paper
 
-#USER minecraft
+USER minecraft
 
 COPY ${DYNMAP_FILE} /tmp/mc-paper/plugins/${DYNMAP_FILE}
 
@@ -58,9 +56,9 @@ EXPOSE 25576
 
 ADD start.sh /start
 
-#VOLUME /data
+VOLUME /data
 ADD server.properties /tmp/server.properties
-#WORKDIR /data
+WORKDIR /data
 
 CMD /start
 
