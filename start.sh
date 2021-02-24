@@ -27,11 +27,5 @@ fi
 if [[ -n "$ENABLE_RCON" ]]; then
     sed -i "/enable-rcon\s*=/ c enable-rcon=$ENABLE_RCON" /data/server.properties
 fi
-if [[ -n "$RCON_PORT" ]]; then
-    sed -i "/rcon\.port\s*=/ c rcon.port=$RCON_PORT" /data/server.properties
-fi
-if [[ -n "$RCON_PASSWORD" ]]; then
-    sed -i "/rcon\.password\s*=/ c rcon.password=$RCON_PASSWORD" /data/server.properties
-fi
 
 java $JVM_OPTS -jar ServerInstall-paper.jar nogui

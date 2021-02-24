@@ -1,7 +1,7 @@
 # This Docker file builds a basic minecraft server
 # directly from the default minecraft server from Mojang
 #
-FROM openjdk:11 AS build
+FROM openjdk:8 AS build
 
 #-------------------------------------
 ENV SERVER_MESSAGE="Minecraft Paper"
@@ -68,8 +68,7 @@ ENV MOTD ${SERVER_MESSAGE} ${VERSION} Server Powered by (jhe) Docker
 ENV LEVEL world
 ENV JVM_OPTS -Xms2G -Xmx2G
 
-ENV ENABLE_RCON=true RCON_PORT=25576
-ENV SEED=572779209
+ENV ENABLE_RCON=true
 
 RUN echo "eula=true" > eula.txt
 
