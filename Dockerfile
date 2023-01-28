@@ -1,13 +1,14 @@
 # This Docker file builds a basic minecraft server
 # directly from the default minecraft server from Mojang
 #
-FROM openjdk:8 AS build
+# FROM openjdk:8 AS build
+FROM openjdk:17 AS build
 
 #-------------------------------------
 ENV SERVER_MESSAGE="Minecraft Paper"
-ENV VERSION_ID=69
-ENV VERSION_NAME=1.17
-ENV MC_SERVER_URL=https://papermc.io/api/v2/projects/paper/versions/1.17/builds/69/downloads/paper-1.17-69.jar
+ENV VERSION_ID=81
+ENV VERSION_NAME=1.19
+ENV MC_SERVER_URL=https://papermc.io/api/v2/projects/paper/versions/1.19/builds/81/downloads/paper-1.19-81.jar
 
 ENV DATAPACK_ADVANCE_FILE=BlazeandCaves_Advancements_Pack_1.11.5.zip
 #ENV DATAPACK_ADVANCE=https://download851.mediafire.com/bcvtfcarjo8g/t4ayv8ku84mhbph/BlazeandCave%5C%27s+Advancements+Pack+1.11.5.zip
